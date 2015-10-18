@@ -1,8 +1,4 @@
 
-
-
-
-
 ## Loading and preprocessing the data
 
 Load the data (i.e. read.csv())

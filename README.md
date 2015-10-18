@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
@@ -19,6 +20,13 @@ individual collected during the months of October and November, 2012
 and include the number of steps taken in 5 minute intervals each day.
 
 ## Data
+=======
+##Reproducible Research: Peer Assessment 1
+
+Introduction
+
+It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit , Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain underutilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
+>>>>>>> origin/master
 
 The data for this assignment can be downloaded from the course web
 site:
