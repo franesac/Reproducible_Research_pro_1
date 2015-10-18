@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Loading and preprocessing the data</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Loading and preprocessing the data</h2>
+
+<p>Load the data (i.e. read.csv())</p>
+
+<p><code>activityData &lt;- read.csv (&quot;activity.csv&quot;, header = T, sep = &quot;,&quot;, stringsAsFactors = F)</code></p>
+
+<p>Process/transform the data (if necessary) into a format suitable for your analysis</p>
+
+<p><code>activityData$date &lt;- as.Date(activityData$date, &quot;%Y-%m-%d&quot;)</code></p>
+
+<h2>ANALYSIS</h2>
+
+<h2>What is mean total number of steps taken per day?</h2>
+
+<p>Calculate the total number of steps taken per day</p>
+
+<p><code>library (dplyr)</code></p>
+
+<p><code>AvgDay &lt;- activityData %&gt;% group_by(date) %&gt;% summarize(total.steps = sum(steps, na.rm = T), mean.steps = mean(steps, na.rm = T))</code></p>
+
+<p>If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day</p>
+
+<p><code>library(ggplot2)</code></p>
+
+<p><code>g &lt;- ggplot(AvgDay, aes(x=total.steps))</code></p>
+
+<p><code>g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = &quot;Frequency&quot;) + labs(x = &quot;Total steps/day&quot;)</code></p>
+
+<p><img src="instructions_fig/Rplot01.png" alt="plot01"/> </p>
+
+<p>Calculate and report the mean and median of the total number of steps taken per day</p>
+
+<p><code>summary(AvgDay$total.steps)</code></p>
+
+<table><thead>
+<tr>
+<th align="center">Min</th>
+<th align="center">1st Qu</th>
+<th align="center">Median</th>
+<th align="center">Mean</th>
+<th align="center">3rd Qu</th>
+<th align="center">Max</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">6778</td>
+<td align="center">10400</td>
+<td align="center">9354</td>
+<td align="center">12810</td>
+<td align="center">21190</td>
+</tr>
+</tbody></table>
+
+<p><code>summary (AvgDay$mean.steps)</code></p>
+
+<table><thead>
+<tr>
+<th align="center">Min</th>
+<th align="center">1st Qu</th>
+<th align="center">Median</th>
+<th align="center">Mean</th>
+<th align="center">3rd Qu</th>
+<th align="center">Max</th>
+<th align="center">NA&#39;s</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">0.1424</td>
+<td align="center">30.7000</td>
+<td align="center">37.3800</td>
+<td align="center">37.3800</td>
+<td align="center">46.1600</td>
+<td align="center">73.5900</td>
+<td align="center">8</td>
+</tr>
+</tbody></table>
+
+<h2>What is the average daily activity pattern?</h2>
+
+<p>Make a time series plot (i.e. type = &ldquo;l&rdquo;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)</p>
+
+<p><code>AvgInterval &lt;- activityData %&gt;% group_by(interval) %&gt;% summarize(mean.steps = mean(steps, na.rm = T))</code></p>
+
+<p><code>g &lt;- ggplot(AvgInterval, aes(x = interval, y = mean.steps))</code></p>
+
+<p><code>g + geom_line() + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14, face = &quot;bold&quot;)) + labs(y = &quot;Mean number of steps&quot;) + labs(x = &quot;Interval&quot;)</code></p>
+
+<p><img src="instructions_fig/Rplot02.png" alt="plot02"/> </p>
+
+<p>Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?</p>
+
+<p><code>The maximum average number of steps is: 206 and occurs in time interval #835</code></p>
+
+<h2>Imputing missing values</h2>
+
+<p>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</p>
+
+<p><code>mean(is.na(activityData$steps))</code></p>
+
+<pre><code>  0.1311475
+</code></pre>
+
+<p><code>sum(is.na(activityData$steps))</code></p>
+
+<pre><code>  2304
+</code></pre>
+
+<p>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</p>
+
+<p><code>Using the average steps per interval. We will use this metric to fill in the NAs.</code></p>
+
+<p>Create a new dataset that is equal to the original dataset but with the missing data filled in.</p>
+
+<p><code>newData &lt;- activityData</code></p>
+
+<p>for (i in 1:nrow(newData)) {
+      if (is.na(newData$steps[i])) {
+            index &lt;- newData$interval[i]
+            value &lt;- subset(AvgInterval, interval==index)
+            newData$steps[i] &lt;- value$mean.steps
+      }
+}</p>
+
+<p>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</p>
+
+<p><code>g &lt;- ggplot(newAvg, aes(x=total.steps))</code></p>
+
+<p><code>g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = &quot;Frequency&quot;) + labs(x = &quot;Total steps/day&quot;)</code></p>
+
+<p><img src="instructions_fig/Rplot03.png" alt="plot03"/> </p>
+
+<h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+
+<p>Create a new factor variable in the dataset with two levels â€“ â€œweekdayâ€ and â€œweekendâ€ indicating whether a given date is a weekday or weekend day.</p>
+
+<p><code>newData$day &lt;- ifelse(weekdays(newData$date) %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;), &quot;weekend&quot;, &quot;weekday&quot;)</code></p>
+
+<p><code>wkend &lt;- filter(newData, day == &quot;weekend&quot;)</code></p>
+
+<p><code>wkday &lt;- filter(newData, day == &quot;weekday&quot;)</code></p>
+
+<p><code>wkend &lt;- wkend %&gt;% group_by(interval) %&gt;% summarize(mean.steps = mean(steps))</code></p>
+
+<p><code>wkend$day &lt;- &quot;weekend&quot;</code></p>
+
+<p><code>wkday &lt;- wkday %&gt;% group_by(interval) %&gt;% summarize(mean.steps = mean(steps))</code></p>
+
+<p><code>wkday$day &lt;- &quot;weekday&quot;</code></p>
+
+<p><code>newInterval &lt;- rbind(wkend, wkday)</code></p>
+
+<p><code>newInterval$day &lt;- as.factor(newInterval$day)</code></p>
+
+<p><code>newInterval$day &lt;- relevel(newInterval$day, &quot;weekend&quot;)</code></p>
+
+<p>Make a panel plot containing a time series plot (i.e. type = &ldquo;l&rdquo;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</p>
+
+<p><code>g &lt;- ggplot (newInterval, aes (interval, mean.steps))</code></p>
+
+<p><code>g + geom_line() + facet_grid (day~.) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = &quot;Number of Steps&quot;) + labs(x = &quot;Interval&quot;)</code></p>
+
+<p><img src="instructions_fig/Rplot04.png" alt="plot04"/> </p>
+
+</body>
+
+</html>
