@@ -3,11 +3,11 @@
 
 Load the data (i.e. read.csv())
 
-activityData <- read.csv ("activity.csv", header = T, sep = ",", stringsAsFactors = F)
+`activityData <- read.csv ("activity.csv", header = T, sep = ",", stringsAsFactors = F)`
 
 Process/transform the data (if necessary) into a format suitable for your analysis
 
-activityData$date <- as.Date(activityData$date, "%Y-%m-%d")
+`activityData$date <- as.Date(activityData$date, "%Y-%m-%d")`
 
 
 ## ANALYSIS
