@@ -1,4 +1,8 @@
 
+
+
+
+
 ## Loading and preprocessing the data
 
 Load the data (i.e. read.csv())
@@ -33,8 +37,15 @@ Calculate and report the mean and median of the total number of steps taken per 
 
 `summary(AvgDay$total.steps)`
 
+| Min       | 1st Qu    | Median    | Mean      | 3rd Qu    | Max       |
+|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| 0         | 6778      | 10400     | 9354      | 12810     | 21190     |
+
 `summary (AvgDay$mean.steps)`
 
+| Min       | 1st Qu    | Median    | Mean      | 3rd Qu    | Max       | NA's      |
+|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| 0.1424    | 30.7000   | 37.3800   | 37.3800   | 46.1600   | 73.5900   | 8         |
 
 ## What is the average daily activity pattern?
 
@@ -58,8 +69,11 @@ Calculate and report the total number of missing values in the dataset (i.e. the
 
 `mean(is.na(activityData$steps))`
 
+      0.1311475
+
 `sum(is.na(activityData$steps))`
 
+      2304
 
 Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
