@@ -15,10 +15,10 @@ Process/transform the data (if necessary) into a format suitable for your analys
 
 Calculate the total number of steps taken per day
 
-library (dplyr)
-AvgDay <- activityData %>% group_by(date) %>%
-  summarize(total.steps = sum(steps, na.rm = T), 
-            mean.steps = mean(steps, na.rm = T))
+`library (dplyr)`
+`AvgDay <- activityData %>% group_by(date) %>%`
+`  summarize(total.steps = sum(steps, na.rm = T), `
+`            mean.steps = mean(steps, na.rm = T))`
 
 If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
 
