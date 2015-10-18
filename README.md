@@ -24,8 +24,10 @@ If you do not understand the difference between a histogram and a barplot, resea
 `library(ggplot2)`
 
 `g <- ggplot(AvgDay, aes(x=total.steps))`
+
 `g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = "Frequency") + labs(x = "Total steps/day")`
 
+![plot01](instructions_fig/Rplot01.png) 
 
 Calculate and report the mean and median of the total number of steps taken per day
 
@@ -43,6 +45,8 @@ Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and 
 `g <- ggplot(AvgInterval, aes(x = interval, y = mean.steps))`
 
 `g + geom_line() + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14, face = "bold")) + labs(y = "Mean number of steps") + labs(x = "Interval")`
+
+![plot02](instructions_fig/Rplot02.png) 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -76,7 +80,10 @@ for (i in 1:nrow(newData)) {
 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 `g <- ggplot(newAvg, aes(x=total.steps))`
+
 `g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = "Frequency") + labs(x = "Total steps/day")`
+
+![plot03](instructions_fig/Rplot03.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -105,4 +112,7 @@ Create a new factor variable in the dataset with two levels – “weekday” an
 Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 `g <- ggplot (newInterval, aes (interval, mean.steps))`
+
 `g + geom_line() + facet_grid (day~.) + theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14)) + labs(y = "Number of Steps") + labs(x = "Interval")`
+
+![plot04](instructions_fig/Rplot04.png) 
